@@ -111,7 +111,6 @@ if (!$berita) {
             <p class="author-info">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?> | <?= date('d F Y', strtotime($berita->created_at)) ?></p>
             <div class="content-text">
                 <p><?= nl2br(htmlspecialchars($berita->content)) ?></p>
-                <p><?= nl2br(htmlspecialchars($berita->summary)) ?></p>
             </div>
 
             <a href="index.php" class="btn btn-back">Kembali ke Berita</a>
