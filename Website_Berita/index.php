@@ -98,11 +98,12 @@ $beritas = $db->news->find(); // Menampilkan semua berita
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-3 position-absolute bottom-0 w-100">
-        <div class="container d-flex justify-content-center">
-            <p class="mb-0">&copy; 2024 Website Berita</p>
-        </div>
-    </footer>
+    <footer class="bg-dark text-white py-3">
+            <div class="container d-flex justify-content-center">
+                <p class="mb-0">&copy; 2024 Website Berita</p>
+            </div>
+        </footer>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
