@@ -46,7 +46,11 @@ $beritas = $db->news->find(); // Menampilkan semua berita
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto"> <!-- ms-auto untuk mengalihkan tombol ke kanan -->
-                        <li class="nav-item">
+                    <!-- Tombol Baru di Kiri Login -->
+                    <li class="nav-item">
+                        <a href="searchKategori.php" class="btn btn-outline-light me-2">Cari Berdasarkan Kategori</a>
+                    </li>    
+                    <li class="nav-item">
                             <a class="nav-link" href="input.php">Tambah Berita</a>
                         </li>
                         <li class="nav-item">

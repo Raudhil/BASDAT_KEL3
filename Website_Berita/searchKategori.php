@@ -39,10 +39,7 @@ $beritas = iterator_to_array($beritasCursor);
                 <ul class="navbar-nav ms-auto">
                     <!-- Link Kembali ke index.php -->
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Kembali ke Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link" href="indexadmin.php">Kembali ke Beranda</a>
                     </li>
                 </ul>
             </div>
@@ -70,26 +67,29 @@ $beritas = iterator_to_array($beritasCursor);
         </form>
 
         <div class="row">
-            <?php if (count($beritas) > 0): ?>
+            
                 <?php foreach ($beritas as $berita): ?>
                     <div class="col-md-6 mb-4">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none">
+                                    <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
                                         <?= htmlspecialchars($berita->title) ?>
                                     </a>
                                 </h5>
                                 <p class="card-text text-muted">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></p>
                                 <p class="card-text"><?= htmlspecialchars($berita->summary) ?></p>
                             </div>
+                            <div class="card-footer d-flex justify-content-between">
+                                <!-- Tombol Edit -->
+                                <a href="edit.php?id=<?= $berita->_id ?>" class="btn btn-warning btn-sm">Edit</a>
+                                <!-- Tombol Delete -->
+                                <a href="delete.php?id=<?= $berita->_id ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?');" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <p class="text-center">Tidak ada berita yang ditemukan untuk kategori ini.</p>
-            <?php endif; ?>
-        </div>
+            </div>
     </main>
 
     <footer class="bg-dark text-white py-3">
