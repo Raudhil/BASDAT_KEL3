@@ -34,6 +34,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 ['_id' => $id],
                 ['$set' => [
                     'title' => $title,
+                    'content' => $content,
                     'summary' => $summary,
                     'category' => $category,
                     'author' => $author,
@@ -73,6 +74,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <div class="mb-3">
                         <label for="summary" class="form-label">Ringkasan</label>
                         <textarea class="form-control" id="summary" name="summary" rows="4" required><?= htmlspecialchars($berita->summary) ?></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <input type="text" class="form-control" id="content" name="content" value="<?= htmlspecialchars($berita->content) ?>" required>
                     </div>
 
                     <div class="mb-3">
