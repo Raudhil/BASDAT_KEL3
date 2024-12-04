@@ -3,14 +3,30 @@ require 'db.php';
 $db = connectMongo();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $db->berita->insertOne([
-        'title' => $_POST['title'],
-        'summary' => $_POST['summary'],
-        'category' => $_POST['category'],
-        'author' => $_POST['author'],
-        'created_at' => new MongoDB\BSON\UTCDateTime(),
-        'updated_at' => new MongoDB\BSON\UTCDateTime(),
-    ]);
+    // Validasi data input
+    $title = trim($_POST['title']);
+    $summary = trim($_POST['summary']);
+    $category = trim($_POST['category']);
+    $author = trim($_POST['author']);
+
+    if (empty($title) || empty($summary) || empty($category) || empty($author)) {
+        echo "Semua kolom wajib diisi.";
+    } else {
+        // Masukkan data ke MongoDB
+        $db->news->insertOne([
+            'title' => $title,
+            'summary' => $summary,
+            'category' => $category,
+            'author' => $author,
+            'created_at' => new MongoDB\BSON\UTCDateTime(),
+            'updated_at' => new MongoDB\BSON\UTCDateTime(),
+        ]);
+
+        // Redirect ke index.php setelah berhasil
+        header('Location: indexadmin.php');
+        exit;
+    }
+
     header('Location: indexadmin.php'); // Redirect to the news list after insertion
     exit;
 }
@@ -18,12 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Berita</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container mt-5">
         <header class="mb-4 text-center">
@@ -57,4 +75,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
