@@ -25,8 +25,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $summary = trim($_POST['summary']);
         $category = trim($_POST['category']);
         $author = trim($_POST['author']);
+        $content = trim($_POST['content']);
 
-        if (empty($title) || empty($summary) || empty($category) || empty($author)) {
+        if (empty($title) || empty($summary) || empty($category) || empty($author) || empty($content)) {
             echo "Semua kolom wajib diisi.";
         } else {
             // Update data berita
@@ -78,12 +79,19 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
-                        <input type="text" class="form-control" id="content" name="content" value="<?= htmlspecialchars($berita->content) ?>" required>
+                        <textarea class="form-control" id="content" name="content" rows="4" required><?= htmlspecialchars($berita->content) ?></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="category" class="form-label">Kategori</label>
-                        <input type="text" class="form-control" id="category" name="category" value="<?= htmlspecialchars($berita->category) ?>" required>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="Olahraga" <?= $berita->category === 'Olahraga' ? 'selected' : '' ?>>Olahraga</option>
+                            <option value="Politik" <?= $berita->category === 'Politik' ? 'selected' : '' ?>>Politik</option>
+                            <option value="Teknologi" <?= $berita->category === 'Teknologi' ? 'selected' : '' ?>>Teknologi</option>
+                            <option value="Kesehatan" <?= $berita->category === 'Kesehatan' ? 'selected' : '' ?>>Kesehatan</option>
+                            <option value="Ekonomi" <?= $berita->category === 'Ekonomi' ? 'selected' : '' ?>>Ekonomi</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">

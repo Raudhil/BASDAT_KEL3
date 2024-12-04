@@ -68,7 +68,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="mb-3">
                 <label for="category" class="form-label">Kategori:</label>
-                <input type="text" class="form-control" id="category" name="category" required>
+                <select class="form-select" id="category" name="category" required>
+                    <option value="">Pilih Kategori</option>
+                    <option value="Olahraga">Olahraga</option>
+                    <option value="Politik">Politik</option>
+                    <option value="Teknologi">Teknologi</option>
+                    <option value="Kesehatan">Kesehatan</option>
+                    <option value="Ekonomi">Ekonomi</option>
+                </select>
             </div>
 
             <div class="mb-3">
