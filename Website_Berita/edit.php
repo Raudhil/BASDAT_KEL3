@@ -92,7 +92,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     </div>
 
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    <a href="index.php" class="btn btn-secondary">Kembali</a>
+                    <a href="indexadmin.php" class="btn btn-secondary">Kembali</a>
                 </form>
             </div>
         </div>
