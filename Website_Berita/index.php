@@ -2,8 +2,26 @@
 require 'db.php';
 $db = connectMongo();
 
-// Mendapatkan daftar semua berita
-$beritas = $db->news->find(); // Menampilkan semua berita
+// Mengambil kata pencarian dari URL (jika ada)
+$searchQuery = '';
+if (isset($_GET['search'])) {
+    $searchQuery = $_GET['search'];
+}
+
+// Menentukan filter pencarian jika ada kata kunci
+$filter = [];
+if ($searchQuery) {
+    $filter = [
+        '$or' => [
+            ['title' => new MongoDB\BSON\Regex($searchQuery, 'i')],
+            ['category' => new MongoDB\BSON\Regex($searchQuery, 'i')],
+            ['summary' => new MongoDB\BSON\Regex($searchQuery, 'i')]
+        ]
+    ];
+}
+
+// Mendapatkan daftar berita berdasarkan filter pencarian
+$beritas = $db->news->find($filter);
 ?>
 
 <!DOCTYPE html>
@@ -15,11 +33,11 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         body {
@@ -34,43 +52,52 @@ $beritas = $db->news->find(); // Menampilkan semua berita
         footer {
             margin-top: auto; /* This ensures that the footer stays at the bottom */
         }
+
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .card-title a {
             font-size: 1.25rem;
             font-weight: bold;
             color: #007bff;
             text-decoration: none;
         }
+
         .card-title a:hover {
             color: #0056b3;
         }
+
         .card-body {
             padding: 1.5rem;
         }
+
         .card-footer {
             background-color: #f8f9fa;
             border-top: 1px solid #e1e1e1;
         }
+
         .card-text {
             font-size: 1rem;
             color: #6c757d;
         }
+
         .card-text.text-muted {
             font-style: italic;
         }
+
         .navbar-nav .nav-link {
             font-size: 1.1rem;
         }
+
         .navbar-nav .nav-link:hover {
             color: #ffc107;
         }
-
     </style>
 </head>
 <body>
@@ -96,8 +123,20 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     </div>
 </nav>
 
+    <!-- Formulir Pencarian -->
+    <div class="container my-4">
+        <form action="" method="GET" class="d-flex">
+            <input type="text" name="search" class="form-control" value="<?= htmlspecialchars($searchQuery) ?>" placeholder="Cari berita..." aria-label="Cari berita">
+            <button type="submit" class="btn btn-primary ms-2">Cari</button>
+        </form>
+    </div>
+
     <main class="container my-4">
         <h2 class="text-center mb-4">Semua Berita</h2>
+
+        <?php if ($searchQuery): ?>
+            <h5 class="text-center mb-4">Hasil Pencarian untuk: "<?= htmlspecialchars($searchQuery) ?>"</h5>
+        <?php endif; ?>
 
         <div class="row">
             <?php foreach ($beritas as $berita): ?>
