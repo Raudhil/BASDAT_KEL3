@@ -15,6 +15,25 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+       html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1; /* This will allow the main content area to expand and take available space */
+        }
+
+        footer {
+            margin-top: auto; /* This ensures that the footer stays at the bottom */
+        }
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -51,6 +70,7 @@ $beritas = $db->news->find(); // Menampilkan semua berita
         .navbar-nav .nav-link:hover {
             color: #ffc107;
         }
+
     </style>
 </head>
 <body>
@@ -103,11 +123,10 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     </main>
 
     <footer class="bg-dark text-white py-3">
-            <div class="container d-flex justify-content-center">
-                <p class="mb-0">&copy; 2024 Website Berita</p>
-            </div>
-        </footer>
+    <div class="container d-flex justify-content-center">
+        <p class="mb-0">&copy; 2024 Website Berita</p>
     </div>
+</footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
