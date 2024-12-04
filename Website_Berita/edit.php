@@ -39,7 +39,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     'author' => $author,
                 ]]
             );
-            header('Location: index.php'); // Redirect setelah sukses
+            header('Location: indexadmin.php'); // Redirect setelah sukses
             exit;
         }
     }

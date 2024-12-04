@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'created_at' => new MongoDB\BSON\UTCDateTime(),
         'updated_at' => new MongoDB\BSON\UTCDateTime(),
     ]);
-    header('Location: index.php'); // Redirect to the news list after insertion
+    header('Location: indexadmin.php'); // Redirect to the news list after insertion
     exit;
 }
 ?>

@@ -17,7 +17,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     if ($result->getDeletedCount() > 0) {
         // Redirect jika penghapusan berhasil
-        header("Location: index.php");
+        header("Location: indexadmin.php");
         exit;
     } else {
         // Jika ID tidak ditemukan
