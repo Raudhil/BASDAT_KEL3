@@ -2,15 +2,14 @@
 require 'db.php';
 $db = connectMongo();
 
-$id = '674f0b6204e4fb7e62a4b4b9';
+// Mengambil ID berita dari URL
+$id = $_GET['id'];
 
-// Fetch the article from the database by its ID
-$berita = $db->berita->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+// Menemukan berita berdasarkan ID
+$berita = $db->news->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
 if (!$berita) {
-    // If article not found
-    echo "Artikel tidak ditemukan.";
-    exit;
+    die("Berita tidak ditemukan!");
 }
 ?>
 
@@ -18,42 +17,113 @@ if (!$berita) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Berita</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; }
-        header { background: #333; color: #fff; padding: 10px 20px; text-align: center; }
-        nav { background: #444; padding: 10px; text-align: center; }
-        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-        nav a:hover { text-decoration: underline; }
-        main { padding: 20px; }
-        .content { margin-bottom: 20px; }
-        .footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 20px; }
+        /* Pastikan body dan html menggunakan flexbox */
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Main content mengisi ruang tersisa */
+    main {
+        flex-grow: 1;
+    }
+
+    /* Footer tetap berada di bawah */
+    .footer {
+        background-color: #343a40;
+        color: #ffffff;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: auto; /* Ini membuat footer tetap di bawah */
+    }
+        .header-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .author-info {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .content-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .content-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e1e1;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+
+        .main-container {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            background-color: #ffffff;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Detail Berita</h1>
+    <header class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <h1>Website Berita</h1>
+        </div>
     </header>
 
-    <nav>
-        <a href="index.php">Semua Berita</a>
-        <a href="categories.php">Kategori</a>
-        <a href="input.php">Tambah Berita</a>
-    </nav>
+    <main class="container my-4">
+        <div class="main-container">
+            <h2 class="header-title"><?= htmlspecialchars($berita->title) ?></h2>
+            <p class="author-info">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?> | <?= date('d F Y', strtotime($berita->created_at)) ?></p>
+            <div class="content-text">
+                <p><?= nl2br(htmlspecialchars($berita->content)) ?></p>
+            </div>
 
-    <main>
-        <div class="content">
-            <h2><?= htmlspecialchars($berita->title) ?></h2>
-            <p><small>Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></small></p>
-            <p><small>Diposting pada: <?= date("d M Y H:i", strtotime($berita->created_at->toDateTime()->format('Y-m-d H:i:s'))) ?></small></p>
-            <p><strong>Ringkasan:</strong> <?= htmlspecialchars($berita->summary) ?></p>
-            <p><strong>Konten:</strong></p>
-            <p><?= nl2br(htmlspecialchars($berita->content)) ?></p> <!-- Show the full content of the article -->
+            <a href="index.php" class="btn btn-back">Kembali ke Berita</a>
         </div>
     </main>
 
     <footer class="footer">
-        <p>&copy; <?= date('Y') ?> Website Berita</p>
+        <div>
+            <p class="mb-0">&copy; 2024 Website Berita</p>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
