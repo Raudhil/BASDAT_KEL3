@@ -8,8 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $summary = trim($_POST['summary']);
     $category = trim($_POST['category']);
     $author = trim($_POST['author']);
+    $content = trim($_POST['content']);
 
-    if (empty($title) || empty($summary) || empty($category) || empty($author)) {
+    if (empty($title) || empty($summary) || empty($category) || empty($author || empty($content))) {
         echo "Semua kolom wajib diisi.";
     } else {
         // Masukkan data ke MongoDB
@@ -18,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'summary' => $summary,
             'category' => $category,
             'author' => $author,
+            'content' => $_POST['content'],
             'created_at' => new MongoDB\BSON\UTCDateTime(),
             'updated_at' => new MongoDB\BSON\UTCDateTime(),
         ]);
@@ -52,6 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label for="title" class="form-label">Judul:</label>
                 <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="summary" class="form-label">Konten</label>
+                <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
             </div>
 
             <div class="mb-3">
