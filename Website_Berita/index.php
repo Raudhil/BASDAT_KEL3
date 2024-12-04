@@ -14,6 +14,44 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     <title>Berita Terkini</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-title a {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .card-title a:hover {
+            color: #0056b3;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e1e1e1;
+        }
+        .card-text {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .card-text.text-muted {
+            font-style: italic;
+        }
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ffc107;
+        }
+    </style>
 </head>
 <body>
     <header class="bg-dark text-white py-3">
@@ -29,9 +67,9 @@ $beritas = $db->news->find(); // Menampilkan semua berita
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="input.php">Tambah Berita</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
                 </ul>
             </div>
@@ -47,18 +85,12 @@ $beritas = $db->news->find(); // Menampilkan semua berita
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
+                                <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none">
                                     <?= htmlspecialchars($berita->title) ?>
                                 </a>
                             </h5>
                             <p class="card-text text-muted">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></p>
                             <p class="card-text"><?= htmlspecialchars($berita->summary) ?></p>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            <!-- Tombol Edit -->
-                            <a href="edit.php?id=<?= $berita->_id ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <!-- Tombol Delete -->
-                            <a href="delete.php?id=<?= $berita->_id ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?');" class="btn btn-danger btn-sm">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -67,11 +99,10 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     </main>
 
     <footer class="bg-dark text-white py-3 position-absolute bottom-0 w-100">
-    <div class="container d-flex justify-content-center">
-        <p class="mb-0">&copy; 2024 Website Berita</p>
-    </div>
-</footer>
-
+        <div class="container d-flex justify-content-center">
+            <p class="mb-0">&copy; 2024 Website Berita</p>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

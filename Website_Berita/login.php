@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($admin['password'] === $password) {
             // Jika password cocok, simpan data admin di session
             $_SESSION['admin'] = $admin['_id'];
-            header('Location: index.php'); // Ganti dengan halaman setelah login
+            header('Location: indexadmin.php'); // Ganti dengan halaman setelah login
             exit();
         } else {
             $error = 'Password salah!';
