@@ -20,27 +20,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Berita</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Tambah Berita Baru</h1>
-    </header>
+    <div class="container mt-5">
+        <header class="mb-4 text-center">
+            <h1 class="text-primary">Tambah Berita Baru</h1>
+        </header>
 
-    <form method="post">
-        <label>Judul:</label><br>
-        <input type="text" name="title" required><br>
-        
-        <label>Ringkasan:</label><br>
-        <textarea name="summary" required></textarea><br>
+        <form method="post" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded bg-light">
+            <div class="mb-3">
+                <label for="title" class="form-label">Judul:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
 
-        <label>Kategori:</label><br>
-        <input type="text" name="category" required><br>
+            <div class="mb-3">
+                <label for="summary" class="form-label">Ringkasan:</label>
+                <textarea class="form-control" id="summary" name="summary" rows="4" required></textarea>
+            </div>
 
-        <label>Penulis:</label><br>
-        <input type="text" name="author" required><br>
+            <div class="mb-3">
+                <label for="category" class="form-label">Kategori:</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+            </div>
 
-        <button type="submit">Tambah Berita</button>
-    </form>
+            <div class="mb-3">
+                <label for="author" class="form-label">Penulis:</label>
+                <input type="text" class="form-control" id="author" name="author" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Tambah Berita</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

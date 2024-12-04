@@ -10,76 +10,70 @@ $beritas = $db->news->find(); // Menampilkan semua berita
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita Terkini</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; text-align: center; }
-        header { background: #333; color: #fff; padding: 10px 20px; text-align: center; }
-        nav { background: #444; padding: 10px; text-align: center; }
-        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-        nav a:hover { text-decoration: underline; }
-        main { padding: 20px; }
-        .berita { border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 10px; text-align: center; }
-        .ringkasan { color: #555; }
-        .footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 20px; }
-        h2 a { text-decoration: none; color: #333; }
-        h2 a:hover { color: #007bff; }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        button.delete {
-            background-color: #dc3545;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        button.delete:hover {
-            background-color: #a71d2a;
-        }
-        a button {
-            text-decoration: none;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Berita Terkini</h1>
+    <header class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <h1>Berita Terkini</h1>
+        </div>
     </header>
 
-    <nav>
-        <a href="index.php">Semua Berita</a>
-        <a href="categories.php">Kategori</a>
-        <a href="input.php">Tambah Berita</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Website Berita</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="input.php">Tambah Berita</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <main>
-        <h2>Semua Berita</h2>
+    <main class="container my-4">
+        <h2 class="text-center mb-4">Semua Berita</h2>
 
-        <?php foreach ($beritas as $berita): ?>
-        <div class="berita">
-            <h2><a href="view.php?id=<?= $berita->_id ?>"><?= htmlspecialchars($berita->title) ?></a></h2>
-            <p class="ringkasan"><?= htmlspecialchars($berita->summary) ?></p>
-            <p><small>Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></small></p>
-            <!-- Tombol Edit -->
-            <a href="edit.php?id=<?= $berita->_id ?>">
-                <button>Edit</button>
-            </a>
-            <!-- Tombol Delete -->
-            <a href="delete.php?id=<?= $berita->_id ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?');">
-                <button class="delete">Delete</button>
-            </a>
+        <div class="row">
+            <?php foreach ($beritas as $berita): ?>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
+                                    <?= htmlspecialchars($berita->title) ?>
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></p>
+                            <p class="card-text"><?= htmlspecialchars($berita->summary) ?></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <!-- Tombol Edit -->
+                            <a href="edit.php?id=<?= $berita->_id ?>" class="btn btn-warning btn-sm">Edit</a>
+                            <!-- Tombol Delete -->
+                            <a href="delete.php?id=<?= $berita->_id ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?');" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-        <?php endforeach; ?>
-
     </main>
 
-    <footer class="footer">
-        <p>&copy; <?= date('Y') ?> Website Berita</p>
-    </footer>
+    <footer class="bg-dark text-white py-3 position-absolute bottom-0 w-100">
+    <div class="container d-flex justify-content-center">
+        <p class="mb-0">&copy; 2024 Website Berita</p>
+    </div>
+</footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
