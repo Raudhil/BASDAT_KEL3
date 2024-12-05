@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require '../config/db.php';
 $db = connectMongo();
 
 // Mendapatkan daftar semua berita
@@ -54,7 +54,7 @@ $beritas = $db->news->find(); // Menampilkan semua berita
                             <a class="nav-link" href="input.php">Tambah Berita</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');">Logout</a>
+                            <a class="nav-link" href="../public/logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?');">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -70,7 +70,7 @@ $beritas = $db->news->find(); // Menampilkan semua berita
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
+                                    <a href="../public/view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
                                         <?= htmlspecialchars($berita->title) ?>
                                     </a>
                                 </h5>

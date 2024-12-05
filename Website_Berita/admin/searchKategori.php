@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require '../config/db.php';
 $db = connectMongo();
 
 // Mendapatkan kategori yang dipilih dari parameter URL
@@ -73,7 +73,7 @@ $beritas = iterator_to_array($beritasCursor);
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
+                                    <a href="../public/view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
                                         <?= htmlspecialchars($berita->title) ?>
                                     </a>
                                 </h5>
