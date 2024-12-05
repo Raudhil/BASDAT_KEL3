@@ -67,4 +67,102 @@
   "updated_at": {
     "$date": "2024-12-03T14:08:28.082Z"
   }
-}]
+},
+
+  {
+    "_id": {
+      "$oid": "674f0b6204e4fb7e62a4b4b9"
+    },
+    "title": "Tips Sukses Mengelola Keuangan Pribadi",
+    "content": "Mengelola keuangan pribadi memerlukan strategi yang baik, seperti membuat anggaran, menabung secara konsisten, dan mengelola utang dengan bijaksana. Dalam artikel ini, kami membahas langkah-langkah praktis untuk membantu Anda mencapai kebebasan finansial.",
+    "summary": "Panduan mengelola keuangan pribadi untuk hidup lebih terencana.",
+    "author": "Sarah Hartono",
+    "category": "Keuangan",
+    "created_at": {
+      "$date": "2024-12-01T10:30:00.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-12-01T12:00:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "674f10dcf66771e33868a7ac"
+    },
+    "title": "Teknologi Baru dalam Dunia AI",
+    "content": "Artikel ini membahas perkembangan terbaru dalam kecerdasan buatan, termasuk GPT generasi terbaru, dan bagaimana teknologi ini membantu industri seperti kesehatan, pendidikan, dan otomotif.",
+    "summary": "Perkembangan terkini di dunia kecerdasan buatan.",
+    "author": "John Doe",
+    "category": "Teknologi",
+    "created_at": {
+      "$date": "2024-12-03T14:08:28.082Z"
+    },
+    "updated_at": {
+      "$date": "2024-12-03T14:08:28.082Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "674f10dcf66771e33868a7ad"
+    },
+    "title": "Pertandingan Sepak Bola Hari Ini",
+    "content": "Tim A menghadapi Tim B dalam pertandingan seru yang berlangsung di stadion utama. Pertandingan ini menarik perhatian ribuan penggemar sepak bola dengan hasil akhir yang menegangkan.",
+    "summary": "Berita terkini tentang pertandingan sepak bola.",
+    "author": "Jane Smith",
+    "category": "Olahraga",
+    "created_at": {
+      "$date": "2024-12-03T14:08:28.082Z"
+    },
+    "updated_at": {
+      "$date": "2024-12-03T14:08:28.082Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "674f10dcf66771e33868a7ae"
+    },
+    "title": "Kebijakan Baru Pemerintah",
+    "content": "Pemerintah mengumumkan kebijakan baru terkait ekonomi yang bertujuan untuk meningkatkan investasi asing dan memperkuat perekonomian lokal. Kebijakan ini termasuk insentif pajak dan pengurangan regulasi.",
+    "summary": "Ringkasan kebijakan ekonomi terbaru.",
+    "author": "David Tan",
+    "category": "Politik",
+    "created_at": {
+      "$date": "2024-12-03T14:08:28.082Z"
+    },
+    "updated_at": {
+      "$date": "2024-12-03T14:08:28.082Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "674f10dcf66771e33868a7af"
+    },
+    "title": "Resep Masakan Sehat untuk Keluarga",
+    "content": "Masakan sehat tidak harus mahal atau sulit. Dalam artikel ini, kami membagikan resep sederhana seperti tumis sayur, sup ayam, dan smoothie buah untuk keluarga Anda.",
+    "summary": "Ide masakan sehat untuk keluarga sehari-hari.",
+    "author": "Chef Ardi",
+    "category": "Kuliner",
+    "created_at": {
+      "$date": "2024-12-04T08:00:00.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-12-04T08:30:00.000Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "674f10dcf66771e33868a7b0"
+    },
+    "title": "Tips Memulai Karir di Bidang IT",
+    "content": "Karir di bidang IT semakin diminati, tetapi bagaimana memulainya? Artikel ini memberikan panduan memilih spesialisasi, membangun portofolio, dan mengikuti kursus online untuk mengembangkan keterampilan.",
+    "summary": "Panduan langkah awal membangun karir di bidang teknologi informasi.",
+    "author": "Mike Anderson",
+    "category": "Karir",
+    "created_at": {
+      "$date": "2024-12-04T09:15:00.000Z"
+    },
+    "updated_at": {
+      "$date": "2024-12-04T09:45:00.000Z"
+    }
+  }
+]
