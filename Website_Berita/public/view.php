@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../config/db.php';
 $db = connectMongo();
 
@@ -185,7 +186,7 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
                 <?php endforeach; ?>
             </div>
 
-            <a href="index.php" class="btn btn-back">Kembali ke Berita</a>
+            <a href=<?php if (isset($_SESSION['admin'])) { echo '../admin/indexadmin.php'; } else { echo 'index.php'; } ?> class="btn btn-back">Kembali ke Berita</a>
         </div>
     </main>
 
