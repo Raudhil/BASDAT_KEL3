@@ -28,6 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['author'], $_POST['com
     exit;
 }
 
+// Menangani penghapusan komentar
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_comment_id'])) {
+    $deleteCommentId = $_GET['delete_comment_id'];
+
+    $db->comments->deleteOne(['_id' => new MongoDB\BSON\ObjectId($deleteCommentId)]);
+
+    header("Location: view.php?id=" . $id);
+    exit;
+}
+
+
 // Mendapatkan komentar terkait berita
 $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
 ?>
@@ -115,6 +126,8 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
                         <strong><?= htmlspecialchars($comment['author']) ?></strong> 
                         <small class="text-muted">(<?= date('d F Y H:i', $comment['created_at']->toDateTime()->getTimestamp()) ?>)</small>
                         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+                        <!-- Tombol untuk menghapus komentar -->
+                        <a href="view.php?id=<?= $id ?>&delete_comment_id=<?= $comment['_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini?')">Hapus</a>
                     </div>
                 <?php endforeach; ?>
             </div>
