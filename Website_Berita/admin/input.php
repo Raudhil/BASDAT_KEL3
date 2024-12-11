@@ -10,7 +10,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author = trim($_POST['author']);
     $content = trim($_POST['content']);
 
-    if (empty($title) || empty($summary) || empty($category) || empty($author || empty($content))) {
+    // Validasi file gambar
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $image = $_FILES['image'];
+        $imageSize = $image['size'];
+        $imageType = $image['type'];
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+        if ($imageSize > 2 * 1024 * 1024) {
+            echo "Ukuran file gambar maksimal 2MB.";
+            exit;
+        }
+
+        if (!in_array($imageType, $allowedTypes)) {
+            echo "Jenis file gambar tidak valid. Hanya JPG, PNG, dan GIF yang diperbolehkan.";
+            exit;
+        }
+
+        // Baca isi file gambar dan konversi ke Base64
+        $imageData = file_get_contents($image['tmp_name']);
+        $imageBase64 = base64_encode($imageData);
+    } else {
+        $imageBase64 = null; // Tidak ada gambar diunggah
+    }
+
+    if (empty($title) || empty($summary) || empty($category) || empty($author) || empty($content)) {
         echo "Semua kolom wajib diisi.";
     } else {
         // Masukkan data ke MongoDB
@@ -19,18 +43,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'summary' => $summary,
             'category' => $category,
             'author' => $author,
-            'content' => $_POST['content'],
+            'content' => $content,
+            'image' => $imageBase64, // Simpan gambar dalam format Base64
             'created_at' => new MongoDB\BSON\UTCDateTime(),
             'updated_at' => new MongoDB\BSON\UTCDateTime(),
         ]);
 
-        // Redirect ke index.php setelah berhasil
-        header('Location: indexadmin.php');
-        exit;
-    }
-
+        
     header('Location: indexadmin.php'); // Redirect to the news list after insertion
     exit;
+
+    }
 }
 ?>
 
@@ -50,14 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 class="text-primary">Tambah Berita Baru</h1>
         </header>
 
-        <form method="post" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded bg-light">
+        <form method="post" enctype="multipart/form-data" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded bg-light">
             <div class="mb-3">
                 <label for="title" class="form-label">Judul:</label>
                 <input type="text" class="form-control" id="title" name="title" required>
             </div>
 
             <div class="mb-3">
-                <label for="summary" class="form-label">Konten</label>
+                <label for="content" class="form-label">Konten:</label>
                 <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
             </div>
 
@@ -81,6 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label for="author" class="form-label">Penulis:</label>
                 <input type="text" class="form-control" id="author" name="author" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Gambar:</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*">
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Tambah Berita</button>

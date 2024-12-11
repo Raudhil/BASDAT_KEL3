@@ -1,4 +1,4 @@
-<?php 
+<?php
 require '../config/db.php';
 $db = connectMongo();
 
@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_comment_id'])) {
     exit;
 }
 
-
 // Mendapatkan komentar terkait berita
 $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
 ?>
@@ -52,7 +51,6 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Styles seperti sebelumnya */
         html, body {
             height: 100%;
             margin: 0;
@@ -70,6 +68,54 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
             padding: 10px 0;
             text-align: center;
             margin-top: auto;
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .author-info {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .content-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .content-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+
+        .main-container {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            background-color: #ffffff;
+        }
+
+        .image-container img {
+            float: left;
+            margin-right: 20px;
+            max-width: 50%;
         }
 
         .comment-form {
@@ -98,6 +144,13 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
         <div class="main-container">
             <h2 class="header-title"><?= htmlspecialchars($berita->title) ?></h2>
             <p class="author-info">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?> | <?= date('d F Y', strtotime($berita->created_at)) ?></p>
+            
+            <?php if (!empty($berita->image)) : ?>
+                <div class="image-container">
+                    <img src="data:image/jpeg;base64,<?= $berita->image ?>" alt="Gambar Berita" class="img-fluid rounded">
+                </div>
+            <?php endif; ?>
+
             <div class="content-text">
                 <p><?= nl2br(htmlspecialchars($berita->content)) ?></p>
             </div>
