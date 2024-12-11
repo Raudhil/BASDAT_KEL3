@@ -18,6 +18,7 @@ $beritas = iterator_to_array($beritasCursor);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,10 +26,19 @@ $beritas = iterator_to_array($beritasCursor);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
+<style>
+    .logo{
+        width: 40px;
+        margin-right: 10px;
+    }
+</style>
+
 <body>
     <header class="bg-dark text-white py-3">
-        <div class="container text-center">
-            <h1>Berita Terkini</h1>
+        <div class="container d-flex align-items-center">
+            <img src="../../img/logo.png" alt="Logo" class="me-3 logo">
+            <h1 class="m-0">BeritaNet</h1>
         </div>
     </header>
 
@@ -67,29 +77,29 @@ $beritas = iterator_to_array($beritasCursor);
         </form>
 
         <div class="row">
-            
-                <?php foreach ($beritas as $berita): ?>
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="../public/view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
-                                        <?= htmlspecialchars($berita->title) ?>
-                                    </a>
-                                </h5>
-                                <p class="card-text text-muted">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></p>
-                                <p class="card-text"><?= htmlspecialchars($berita->summary) ?></p>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between">
-                                <!-- Tombol Edit -->
-                                <a href="edit.php?id=<?= $berita->_id ?>" class="btn btn-warning btn-sm">Edit</a>
-                                <!-- Tombol Delete -->
-                                <a href="delete.php?id=<?= $berita->_id ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?');" class="btn btn-danger btn-sm">Delete</a>
-                            </div>
+
+            <?php foreach ($beritas as $berita): ?>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="../public/view.php?id=<?= $berita->_id ?>" class="text-decoration-none text-dark">
+                                    <?= htmlspecialchars($berita->title) ?>
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?></p>
+                            <p class="card-text"><?= htmlspecialchars($berita->summary) ?></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <!-- Tombol Edit -->
+                            <a href="edit.php?id=<?= $berita->_id ?>" class="btn btn-warning btn-sm">Edit</a>
+                            <!-- Tombol Delete -->
+                            <a href="delete.php?id=<?= $berita->_id ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?');" class="btn btn-danger btn-sm">Delete</a>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </main>
 
     <footer class="bg-dark text-white py-3">
@@ -101,4 +111,5 @@ $beritas = iterator_to_array($beritasCursor);
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

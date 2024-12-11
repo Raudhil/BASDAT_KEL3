@@ -8,6 +8,7 @@ $beritas = $db->news->find(); // Menampilkan semua berita
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,41 +17,52 @@ $beritas = $db->news->find(); // Menampilkan semua berita
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Menggunakan flexbox agar footer tetap berada di bawah */
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
         }
+
         .content {
-            min-height: 100%; /* Agar konten memanjang sesuai tinggi layar */
+            min-height: 100%;
+            /* Agar konten memanjang sesuai tinggi layar */
             display: flex;
             flex-direction: column;
         }
+
         footer {
-            margin-top: auto; /* Memastikan footer berada di bawah */
+            margin-top: auto;
+            /* Memastikan footer berada di bawah */
+        }
+
+        .logo{
+            width: 40px;
+            margin-right: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="content">
         <header class="bg-dark text-white py-3">
-            <div class="container text-center">
-                <h1>Berita Terkini</h1>
+            <div class="container d-flex align-items-center">
+                <img src="../../img/logo.png" alt="Logo" class="me-3 logo">
+                <h1 class="m-0">BeritaNet</h1>
             </div>
         </header>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="#">Website Berita</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto"> <!-- ms-auto untuk mengalihkan tombol ke kanan -->
-                    <!-- Tombol Baru di Kiri Login -->
-                    <li class="nav-item">
-                        <a href="searchKategori.php" class="btn btn-outline-light me-2">Cari Berdasarkan Kategori</a>
-                    </li>    
-                    <li class="nav-item">
+                        <!-- Tombol Baru di Kiri Login -->
+                        <li class="nav-item">
+                            <a href="searchKategori.php" class="btn btn-outline-light me-2">Cari Berdasarkan Kategori</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="input.php">Tambah Berita</a>
                         </li>
                         <li class="nav-item">
@@ -90,12 +102,13 @@ $beritas = $db->news->find(); // Menampilkan semua berita
         </main>
 
         <footer class="bg-dark text-white py-3">
-    <div class="container d-flex justify-content-center">
-        <p class="mb-0">&copy; 2024 Website Berita</p>
-    </div>
-</footer>
+            <div class="container d-flex justify-content-center">
+                <p class="mb-0">&copy; 2024 Website Berita</p>
+            </div>
+        </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

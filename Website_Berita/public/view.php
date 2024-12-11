@@ -45,6 +45,7 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,7 +53,8 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             display: flex;
@@ -132,12 +134,19 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
         .comment-item {
             margin-bottom: 15px;
         }
+
+        .logo{
+            width: 40px;
+            margin-right: 10px;
+        }
     </style>
 </head>
+
 <body>
     <header class="bg-dark text-white py-3">
-        <div class="container text-center">
-            <h1>Website Berita</h1>
+        <div class="container d-flex align-items-center">
+            <img src="../../img/logo.png" alt="Logo" class="me-3 logo">
+            <h1 class="m-0">BeritaNet</h1>
         </div>
     </header>
 
@@ -145,7 +154,7 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
         <div class="main-container">
             <h2 class="header-title"><?= htmlspecialchars($berita->title) ?></h2>
             <p class="author-info">Kategori: <?= htmlspecialchars($berita->category) ?> | Penulis: <?= htmlspecialchars($berita->author) ?> | <?= date('d F Y', strtotime($berita->created_at)) ?></p>
-            
+
             <?php if (!empty($berita->image)) : ?>
                 <div class="image-container">
                     <img src="data:image/jpeg;base64,<?= $berita->image ?>" alt="Gambar Berita" class="img-fluid rounded">
@@ -177,7 +186,7 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
                 <h3>Komentar</h3>
                 <?php foreach ($comments as $comment): ?>
                     <div class="comment-item">
-                        <strong><?= htmlspecialchars($comment['author']) ?></strong> 
+                        <strong><?= htmlspecialchars($comment['author']) ?></strong>
                         <small class="text-muted">(<?= date('d F Y H:i', $comment['created_at']->toDateTime()->getTimestamp()) ?>)</small>
                         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
                         <!-- Tombol untuk menghapus komentar -->
@@ -186,7 +195,11 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
                 <?php endforeach; ?>
             </div>
 
-            <a href=<?php if (isset($_SESSION['admin'])) { echo '../admin/indexadmin.php'; } else { echo 'index.php'; } ?> class="btn btn-back">Kembali ke Berita</a>
+            <a href=<?php if (isset($_SESSION['admin'])) {
+                        echo '../admin/indexadmin.php';
+                    } else {
+                        echo 'index.php';
+                    } ?> class="btn btn-back">Kembali ke Berita</a>
         </div>
     </main>
 
@@ -199,4 +212,5 @@ $comments = $db->comments->find(['news_id' => new MongoDB\BSON\ObjectId($id)]);
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
